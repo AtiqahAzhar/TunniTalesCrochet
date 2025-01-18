@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TunniTales Crochet - Handmade with Love 🧸</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Manrope', sans-serif;
+        }
+
+        :root {
+            --sandals: #896446;
+            --sand: #F1F0EC;
+            --ocean: #AFCDD0;
+            --linen: #E1E2CC;
+            --text-dark: #333333;
+        }
+
+        body {
+            background-color: var(--sand);
+        }
+
+        .navbar {
+            background: var(--sandals);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            color: var(--sand);
+            font-size: 1.5rem;
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        /* Dropdown Styles */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-toggle {
+            color: var(--sand);
+            text-decoration: none;
+            font-weight: 500;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            
+        }
+
+        .dropdown-toggle:hover {
+            color: var(--ocean);
+        }
+
+        .dropdown-toggle i {
+            transition: transform 0.3s ease;
+        }
+
+        .dropdown:hover .dropdown-toggle i {
+            transform: rotate(180deg);
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: white;
+            min-width: 200px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 1000;
+            margin-top: 0.5rem;
+        }
+
+        .dropdown:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: 0.8rem 1.2rem;
+            color: var(--text-dark) !important;
+            text-decoration: none;
+            transition: background-color 0.3s;
+            border-radius: 8px;
+        }
+
+        .dropdown-menu a:hover {
+            background-color: var(--sand);
+            color: var(--sandals) !important;
+        }
+
+        /* Arrow up for dropdown */
+        .dropdown-menu::before {
+            content: '';
+            position: absolute;
+            top: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-left: 8px solid transparent;
+            border-right: 8px solid transparent;
+            border-bottom: 8px solid white;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+        }
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--sand);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--ocean);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.3)),
+                        url('1\ \(53\).jpeg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 0 2rem;
+        }
+
+        .hero-content {
+            max-width: 800px;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: var(--ocean);
+            color: var(--text-dark);
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .cta-button:hover {
+            background: var(--sandals);
+            color: var(--sand);
+            transform: translateY(-2px);
+        }
+
+        /* Featured Section */
+        .featured {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: var(--sandals);
+            margin-bottom: 3rem;
+        }
+
+        .featured-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            
+        }
+
+        .featured-item {
+    position: relative;
+    height: 450px;
+    perspective: 1000px;
+    background: transparent;
+    box-shadow: none;
+}
+
+.featured-card {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 0.8s;
+}
+
+.featured-item:hover .featured-card {
+    transform: rotateY(180deg);
+}
+
+.featured-front,
+.featured-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.featured-front {
+    background: white;
+    height: 500px;
+  
+}
+
+.featured-back {
+    background: var(--sandals);
+    transform: rotateY(180deg);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    text-align: center;
+    color: var(--sand);
+}
+
+.featured-back h3 {
+    color: var(--sand);
+    margin-bottom: 1rem;
+}
+
+.featured-back p {
+    margin-bottom: 1.5rem;
+}
+
+.featured-back .cta-button {
+    background: var(--sand);
+    color: var(--sandals);
+    padding: 0.8rem 1.5rem;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.featured-back .cta-button:hover {
+    background: var(--ocean);
+    transform: translateY(-2px);
+}
+
+.featured-image img {
+    width: 400px;
+    height: 400px;
+    object-fit: cover;
+    display: block;
+    margin: 0 auto;
+}
+
+.featured-item {
+    width: 400px;
+    margin: 0 auto;
+}
+
+.featured-info {
+    padding: 1.5rem;
+    text-align: center;
+}
+        /* About Section */
+        .about {
+            background: var(--linen);
+            padding: 5rem 2rem;
+        }
+
+        .about-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-image {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+        }
+
+        .about-content h2 {
+            color: var(--sandals);
+            margin-bottom: 1.5rem;
+        }
+
+        .about-content p {
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        /* Newsletter Section */
+        .newsletter {
+            background: var(--ocean);
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .newsletter-container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .newsletter h2 {
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 1rem;
+            border: none;
+            border-radius: 30px;
+            outline: none;
+        }
+
+        .newsletter-form button {
+            padding: 1rem 2rem;
+            background: var(--sandals);
+            color: var(--sand);
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .newsletter-form button:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .hero h1 { font-size: 2.5rem; }
+            .about-container { grid-template-columns: 1fr; }
+            .newsletter-form { flex-direction: column; }
+            .featured-grid { grid-template-columns: 1fr; }
+        }
+        .testimonials {
+            padding: 5rem 2rem;
+            background: var(--sand);
+            overflow: hidden;
+        }
+
+        .testimonial-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .testimonial-track {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+            gap: 2rem;
+        }
+
+        .testimonial-slide {
+            flex: 0 0 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .testimonial-image {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-bottom: 1.5rem;
+            border: 3px solid var(--ocean);
+        }
+
+        .testimonial-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .testimonial-quote {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: var(--text-dark);
+            margin-bottom: 1.5rem;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            font-weight: 600;
+            color: var(--sandals);
+            margin-bottom: 0.5rem;
+        }
+
+        .testimonial-role {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .testimonial-nav {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .testimonial-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--linen);
+            border: none;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .testimonial-dot.active {
+            background: var(--sandals);
+            transform: scale(1.2);
+        }
+
+        .testimonial-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: var(--sandals);
+            transition: 0.3s;
+        }
+
+        .testimonial-btn:hover {
+            background: var(--ocean);
+            color: var(--text-dark);
+        }
+
+        .testimonial-prev { left: 0; }
+        .testimonial-next { right: 0; }
+
+        @media (max-width: 768px) {
+            .testimonial-slide {
+                padding: 1.5rem;
+            }
+            .testimonial-btn {
+                display: none;
+            }
+        }
+        .footer {
+    background: var(--sandals);
+    color: var(--sand);
+    padding: 4rem 2rem 2rem;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+}
+
+.footer-section h3 {
+    color: var(--ocean);
+    margin-bottom: 1.5rem;
+    font-size: 1.2rem;
+}
+
+.footer-section ul {
+    list-style: none;
+}
+
+.footer-section ul li {
+    margin-bottom: 0.8rem;
+}
+
+.footer-section ul li a {
+    color: var(--sand);
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.footer-section ul li a:hover {
+    color: var(--ocean);
+    padding-left: 5px;
+}
+
+.social-links {
+    display: flex;
+    gap: 1rem;
+}
+
+.social-links a {
+    color: var(--sand);
+    font-size: 1.5rem;
+    transition: 0.3s;
+}
+
+.social-links a:hover {
+    color: var(--ocean);
+    transform: translateY(-3px);
+}
+
+.copyright {
+    text-align: center;
+    padding-top: 2rem;
+    margin-top: 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--sand);
+    font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+    .footer-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .footer-container {
+        grid-template-columns: 1fr;
+    }
+}
+    </style>
+</head>
+<body>  
+    <nav class="navbar">
+        <a href="index.html" class="logo">TunniTales Crochet 🧸</a>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="products.html">Products</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+            
+            <!-- FAQ Dropdown -->
+            <div class="dropdown">
+                <span class="dropdown-toggle">
+                    FAQ
+                    <i class="bi bi-chevron-down"></i>
+                </span>
+                <div class="dropdown-menu">
+                    <a href="faq.html#general">General </a>
+                    <a href="faq.html#product">Product Info </a>
+                    <a href="faq.html#payment">Payment </a>
+                    <a href="faq.html#shipping">Shipping </a>
+                </div>
+            </div>
+
+            <a href="feedback.html">Feedback</a>
+            </a>
+        </div>
+    </div>
+</nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Handcrafted with Love</h1>
+            <p>Discover our collection of adorable crochet plushies, keychains, and custom creations</p>
+            <a href="products.html" class="cta-button">Shop Now</a>
+        </div>
+    </section>
+
+    <section class="featured">
+        <h2 class="section-title">Featured Creations ✨</h2>
+        <div class="featured-grid">
+            <div class="featured-item">
+                <div class="featured-card">
+                    <div class="featured-front">
+                        <div class="featured-image">
+                            <img src="1 (21).jpeg" alt="Featured Plushie">
+                        </div>
+                        <div class="featured-info">
+                            <h3>Teddy Bear Collection</h3>
+                            <p>Discover our adorable handmade teddy bears</p>
+                        </div>
+                    </div>
+                    <div class="featured-back">
+                        <h3>Dino Collection</h3>
+                        <p>Each teddy dino is carefully crafted with premium materials and filled with love. Perfect for gifting or collecting!</p>
+                        <a href="products.html#dino" class="cta-button">View Collection</a>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="featured-item">
+                <div class="featured-card">
+                    <div class="featured-front">
+                        <div class="featured-image">
+                            <img src="1 (60).jpeg" alt="Custom Orders">
+                        </div>
+                        <div class="featured-info">
+                            <h3>Custom Orders</h3>
+                            <p>Create your own unique crochet companion</p>
+                        </div>
+                    </div>
+                    <div class="featured-back">
+                        <h3>Custom Orders</h3>
+                        <p>Want something unique? We'll work with you to create the perfect custom crochet piece just for you!</p>
+                        <a href="https://wa.link/q3cori" class="cta-button">Start Creating</a>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="featured-item">
+                <div class="featured-card">
+                    <div class="featured-front">
+                        <div class="featured-image">
+                            <img src="1 (15).jpeg" alt="Seasonal Items">
+                        </div>
+                        <div class="featured-info">
+                            <h3>Seasonal Collection</h3>
+                            <p>Special items for every occasion</p>
+                        </div>
+                    </div>
+                    <div class="featured-back">
+                        <h3>Seasonal Collection</h3>
+                        <p>Discover our limited edition seasonal items, perfect for holidays and special occasions!</p>
+                        <a href="products.html#seasonal" class="cta-button">Shop Seasonal</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="about">
+        <div class="about-container">
+            <div class="about-image">
+                <img src="1 (57).jpeg" alt="About TunniTales">
+            </div>
+            <div class="about-content">
+                <h2>About TunniTales</h2>
+                <p>Welcome to TunniTales Crochet, where every stitch tells a story. We specialize in creating handmade crochet plushies, keychains, and custom creations that bring joy and comfort to people of all ages.</p>
+                <p>Each piece is carefully crafted with love and attention to detail, ensuring that your TunniTales friend becomes a cherished companion for years to come.</p>
+                <a href="about.html" class="cta-button">Learn More</a>
+            </div>
+        </div>
+    </section>
+    <section class="testimonials">
+        <h2 class="section-title">What Our Customers Say 💝</h2>
+        <div class="testimonial-container">
+            <button class="testimonial-btn testimonial-prev">←</button>
+            <div class="testimonial-track">
+                <div class="testimonial-slide">
+                    <div class="testimonial-image">
+                        <img src="1 (45).jpeg" alt="Nur Aisyah">
+                    </div>
+                    <p class="testimonial-quote">"Alhamdulillah, anak saya sangat suka dengan teddy bear kecil yang saya pesan. Jahitannya sangat kemas dan kualiti terbaik."</p>
+                    <h3 class="testimonial-author">Nur Aisyah binti Abdullah</h3>
+                    <p class="testimonial-role">Pelanggan </p>
+                </div>
+                <div class="testimonial-slide">
+                    <div class="testimonial-image">
+                        <img src="1 (70).jpeg" alt="Ahmad">
+                    </div>
+                    <p class="testimonial-quote">"Saya tempah custom dino plushie untuk anak saudara saya. Hasilnya sangat memuaskan dan detail pada setiap jahitan memang sempurna. Terima kasih TunniTales!"</p>
+                    <h3 class="testimonial-author">Ahmad bin Hassan</h3>
+                    <p class="testimonial-role">Pelanggan </p>
+                </div>
+		<div class="testimonial-slide">
+                    <div class="testimonial-image">
+                        <img src="1 (59).jpeg" alt="Nisa">
+                    </div>
+                    <p class="testimonial-quote">"Received my first crochet keychain. Terima kasih TunniTales!"</p>
+                    <h3 class="testimonial-author">Nisa Juventus</h3>
+                    <p class="testimonial-role">Pelanggan </p>
+                </div>
+		<div class="testimonial-slide">
+                    <div class="testimonial-image">
+                        <img src="1 (47).jpeg" alt="Kana">
+                    </div>
+                    <p class="testimonial-quote">"My Fav sanrio character. Thank you Tunni"</p>
+                    <h3 class="testimonial-author">Kanarinda</h3>
+                    <p class="testimonial-role">Pelanggan </p>
+                </div>
+
+                <div class="testimonial-slide">
+                    <div class="testimonial-image">
+                        <img src="1 (60).jpeg" alt="Siti">
+                    </div>
+                    <p class="testimonial-quote">"Custom order Keychain. Hasilnya sangat comel! Kualiti terjamin dan harga berpatutan. Akan repeat order lagi!"</p>
+                    <h3 class="testimonial-author">Siti Noorhaliza</h3>
+                    <p class="testimonial-role">Pelanggan </p>
+                </div>
+            </div>
+            <button class="testimonial-btn testimonial-next">→</button>
+            <div class="testimonial-nav">
+                <button class="testimonial-dot active"></button>
+                <button class="testimonial-dot"></button>
+                <button class="testimonial-dot"></button>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Add smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+    <!-- Previous HTML remains the same until the script section -->
+<!-- At the end of the body, replace the previous script with this simpler version: -->
+
+<script>
+    // Get all necessary elements
+    const track = document.querySelector('.testimonial-track');
+    const slides = document.querySelectorAll('.testimonial-slide');
+    const nextButton = document.querySelector('.testimonial-next');
+    const prevButton = document.querySelector('.testimonial-prev');
+    const dots = document.querySelectorAll('.testimonial-dot');
+
+    // Keep track of current slide
+    let currentSlide = 0;
+    
+    // Function to show slide
+    function showSlide(slideNumber) {
+        // Move the slide track
+        track.style.transform = `translateX(-${slideNumber * 100}%)`;
+        
+        // Update dots
+        dots.forEach(dot => dot.classList.remove('active'));
+        dots[slideNumber].classList.add('active');
+        
+        // Update current slide number
+        currentSlide = slideNumber;
+    }
+
+    // Next button click
+    nextButton.addEventListener('click', function() {
+        // If we're at the last slide, go to first slide
+        // Otherwise, go to next slide
+        if (currentSlide >= slides.length - 1) {
+            showSlide(0);
+        } else {
+            showSlide(currentSlide + 1);
+        }
+    });
+
+    // Previous button click
+    prevButton.addEventListener('click', function() {
+        // If we're at the first slide, go to last slide
+        // Otherwise, go to previous slide
+        if (currentSlide <= 0) {
+            showSlide(slides.length - 1);
+        } else {
+            showSlide(currentSlide - 1);
+        }
+    });
+
+    // Add click events to dots
+    dots.forEach((dot, index) => {
+        dot.addEventListener('click', function() {
+            showSlide(index);
+        });
+    });
+
+    // Auto slide every 5 seconds
+    setInterval(function() {
+        // Go to next slide
+        if (currentSlide >= slides.length - 1) {
+            showSlide(0);
+        } else {
+            showSlide(currentSlide + 1);
+        }
+    }, 5000);
+</script>
+<footer class="footer">
+    <div class="footer-container">
+        <div class="footer-section">
+            <h3>Quick Links</h3>
+            <ul>
+                <li><a href="http://shopee.com.my/tunnitalescrochet">Shop</a></li>
+                <li><a href="https://wa.link/q3cori">Custom Orders</a></li>
+                <li><a href="about.html">About Us</a></li>
+            </ul>
+        </div>
+        <div class="footer-section">
+            <h3>Connect With Us</h3>
+            <ul>
+                <li><a href="https://www.instagram.com/tunnitalescrochet">Instagram: @tunnitalescrochet</a></li>
+                <li><a href="https://www.tiktok.com/@tunnitales">TikTok: @tunnitales</a></li>
+                <li><a href="https://www.threads.net/@tunnitalescrochet">Threads: @tunnitalescrochet</a></li>
+                <li><a href="https://wa.me/60175780354">WhatsApp: 017-5780354</a></li>
+            </ul>
+        </div>
+        <div class="footer-section">
+            <h3>Share with us</h3>
+            <ul>
+                <li><a href="feedback.html">Feedback</a></li>
+		<li><a href= "mailto:hanaiiwork@gmail.com">E-mail</a></li>
+               
+                
+            </ul>
+        </div>
+        <div class="footer-section">
+            <h3>Newsletter</h3>
+            <p>Join our community for updates and special offers!</p>
+            <form class="footer-form">
+                <input type="email" placeholder="Your email" style="padding: 0.5rem; margin: 1rem 0; width: 100%; border-radius: 5px; border: none;">
+                <button type="submit" class="cta-button" style="font-size: 0.9rem; padding: 0.5rem 1rem;">Subscribe</button>
+            </form>
+        </div>
+    </div>
+    <div class="copyright">
+        <p>&copy; 2024 TunniTales Crochet. All rights reserved. | Handmade with ❤️ in Malaysia</p>
+    </div>
+</footer>
+</body>
+</html>
